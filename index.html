@@ -16,92 +16,130 @@
             accent: '#C19B7C',
             dark: '#1A1A1A',
             light: '#F5F5F5',
-          }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out',
+            'slide-up': 'slideUp 0.5s ease-out',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+          },
         }
       }
     }
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @media (max-width: 640px) {
+      html { font-size: 14px; }
+    }
+    @media (max-width: 480px) {
+      html { font-size: 12px; }
+    }
+    body {
+      min-width: 270px;
+      overflow-x: hidden;
+    }
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body class="bg-light text-dark">
 
   <!-- Nav Bar -->
-  <nav class="bg-dark text-light p-6 sticky top-0 z-10">
-    <div class="container mx-auto flex justify-between items-center">
+  <nav class="bg-dark text-light p-4 sticky top-0 z-10 transition-all duration-300 ease-in-out" id="navbar">
+    <div class="container mx-auto px-4 flex flex-wrap justify-between items-center">
       <div class="flex items-center space-x-4">
         <img class="w-10 h-10 rounded-full" src="Images/SKLogo.png" alt="SK Logo">
         <h1 class="text-2xl font-bold">Shaxzod Karimov</h1>
       </div>
-      <ul class="flex space-x-6">
-        <li><a href="#home" class="hover:text-accent transition-colors">Home</a></li>
-        <li><a href="#about" class="hover:text-accent transition-colors">About</a></li>
-        <li><a href="#skills" class="hover:text-accent transition-colors">Skills</a></li>
-        <li><a href="#projects" class="hover:text-accent transition-colors">Projects</a></li>
-        <li><a href="#certificates" class="hover:text-accent transition-colors">Certificates</a></li>
-        <li><a href="#experience" class="hover:text-accent transition-colors">Experience</a></li>
-        <li><a href="#contact" class="hover:text-accent transition-colors">Contact</a></li>
+      <button id="menuToggle" class="lg:hidden focus:outline-none" aria-label="Toggle menu">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+      <ul id="mobileMenu" class="hidden lg:flex w-full lg:w-auto mt-4 lg:mt-0 flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-6">
+        <li><a href="#home" class="block hover:text-accent transition-colors">Home</a></li>
+        <li><a href="#about" class="block hover:text-accent transition-colors">About</a></li>
+        <li><a href="#skills" class="block hover:text-accent transition-colors">Skills</a></li>
+        <li><a href="#projects" class="block hover:text-accent transition-colors">Projects</a></li>
+        <li><a href="#certificates" class="block hover:text-accent transition-colors">Certificates</a></li>
+        <li><a href="#experience" class="block hover:text-accent transition-colors">Experience</a></li>
+        <li><a href="#contact" class="block hover:text-accent transition-colors">Contact</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section id="home" class="bg-primary text-light py-32 text-center">
+  <section id="home" class="bg-primary text-light py-16 md:py-32 text-center animate-fade-in">
     <div class="container mx-auto px-4">
-      <h2 class="text-5xl font-bold mb-4">Shaxzod Karimov</h2>
-      <p class="text-xl mb-8">Computer Science Graduate & Aspiring Software Developer</p>
-      <a href="#projects" class="bg-accent text-light font-bold py-3 px-6 rounded-full hover:bg-secondary transition-colors">View My Projects</a>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Shaxzod Karimov</h2>
+      <p class="md:text-xl mb-8">Computer Science Graduate & Aspiring Software Developer</p>
+      <a href="#projects" class="bg-accent text-light font-bold py-3 px-6 rounded-full hover:bg-secondary transition-colors inline-block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent">View My Projects</a>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-20">
+  <section id="about" class="py-16 md:py-20 animate-on-scroll">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-8">About Me</h2>
       <div class="flex flex-col md:flex-row items-center justify-center">
-        <img src="Images/Portrait.png" alt="Shaxzod Karimov" class="w-64 h-64 rounded-full mb-8 md:mb-0 md:mr-8 object-cover">
+        <img src="Images/Portrait.png" alt="Shaxzod Karimov" class="w-48 h-48 md:w-64 md:h-64 rounded-full mb-8 md:mb-0 md:mr-8 object-cover">
         <div class="max-w-lg text-center md:text-left">
-          <p class="text-lg mb-4">I'm a recent Computer Science graduate from City University of New York at Queens College with a passion for software development and problem-solving. My journey in tech includes various certifications and hands-on projects that demonstrate my skills in web development and programming.</p>
-          <p class="text-lg">I'm constantly learning and expanding my skill set, with a focus on full-stack development and cybersecurity. My goal is to contribute to innovative projects and make a positive impact in the tech industry.</p>
+          <p class="text-base md:text-lg mb-4">I'm a recent Computer Science graduate from City University of New York at Queens College with a passion for software development and problem-solving. My journey in tech includes various certifications and hands-on projects that demonstrate my skills in web development and programming.</p>
+          <p class="text-base md:text-lg">I'm constantly learning and expanding my skill set, with a focus on full-stack development and cybersecurity. My goal is to contribute to innovative projects and make a positive impact in the tech industry.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Skills Section -->
-  <section id="skills" class="py-20 bg-secondary/10">
+  <section id="skills" class="py-16 md:py-20 bg-secondary/10 animate-on-scroll">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-8">Skills & Technologies</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-light p-4 rounded-lg shadow text-center">
-          <i class="fab fa-react text-4xl text-primary mb-2"></i>
+        <div class="bg-light p-4 rounded-lg shadow text-center transform hover:scale-105 transition-transform duration-300">
+          <i class="fab fa-react text-3xl md:text-4xl text-primary mb-2"></i>
           <h3 class="font-bold">React</h3>
         </div>
-        <div class="bg-light p-4 rounded-lg shadow text-center">
-          <i class="fab fa-js text-4xl text-primary mb-2"></i>
+        <div class="bg-light p-4 rounded-lg shadow text-center transform hover:scale-105 transition-transform duration-300">
+          <i class="fab fa-js text-3xl md:text-4xl text-primary mb-2"></i>
           <h3 class="font-bold">JavaScript</h3>
         </div>
-        <div class="bg-light p-4 rounded-lg shadow text-center">
-          <i class="fab fa-python text-4xl text-primary mb-2"></i>
+        <div class="bg-light p-4 rounded-lg shadow text-center transform hover:scale-105 transition-transform duration-300">
+          <i class="fab fa-python text-3xl md:text-4xl text-primary mb-2"></i>
           <h3 class="font-bold">Python</h3>
         </div>
-        <div class="bg-light p-4 rounded-lg shadow text-center">
-          <i class="fab fa-java text-4xl text-primary mb-2"></i>
+        <div class="bg-light p-4 rounded-lg shadow text-center transform hover:scale-105 transition-transform duration-300">
+          <i class="fab fa-java text-3xl md:text-4xl text-primary mb-2"></i>
           <h3 class="font-bold">Java</h3>
         </div>
-        <div class="bg-light p-4 rounded-lg shadow text-center">
-          <i class="fas fa-database text-4xl text-primary mb-2"></i>
+        <div class="bg-light p-4 rounded-lg shadow text-center transform hover:scale-105 transition-transform duration-300">
+          <i class="fas fa-database text-3xl md:text-4xl text-primary mb-2"></i>
           <h3 class="font-bold">SQL & NoSQL</h3>
         </div>
-        <div class="bg-light p-4 rounded-lg shadow text-center">
-          <i class="fab fa-html5 text-4xl text-primary mb-2"></i>
+        <div class="bg-light p-4 rounded-lg shadow text-center transform hover:scale-105 transition-transform duration-300">
+          <i class="fab fa-html5 text-3xl md:text-4xl text-primary mb-2"></i>
           <h3 class="font-bold">HTML/CSS</h3>
         </div>
-        <div class="bg-light p-4 rounded-lg shadow text-center">
-          <i class="fab fa-github text-4xl text-primary mb-2"></i>
+        <div class="bg-light p-4 rounded-lg shadow text-center transform hover:scale-105 transition-transform duration-300">
+          <i class="fab fa-github text-3xl md:text-4xl text-primary mb-2"></i>
           <h3 class="font-bold">Git & GitHub</h3>
         </div>
-        <div class="bg-light p-4 rounded-lg shadow text-center">
-          <i class="fas fa-shield-alt text-4xl text-primary mb-2"></i>
+        <div class="bg-light p-4 rounded-lg shadow text-center transform hover:scale-105 transition-transform duration-300">
+          <i class="fas fa-shield-alt text-3xl md:text-4xl text-primary mb-2"></i>
           <h3 class="font-bold">Cybersecurity</h3>
         </div>
       </div>
@@ -109,84 +147,90 @@
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="py-20">
-    <div class="container mx-auto px-4">
+<section id="projects" class="py-16 md:py-20 animate-on-scroll">
+  <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-8">My Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Stack and Queues Project -->
-        <div class="bg-light rounded-lg shadow-lg overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Stack and Queues Project</h3>
-            <p class="text-gray-600 mb-4">Implementation of stack and queue data structures in C++, demonstrating fundamental computer science concepts and data structure operations.</p>
-            <div class="flex items-center gap-2 mb-4">
-              <span class="px-2 py-1 bg-gray-100 rounded text-sm">C++</span>
-            </div>
-            <a href="https://github.com/shakka9789/Stack-and-Queues-Project" target="_blank" class="text-primary hover:underline">View on GitHub</a>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project Card: CS:GO Item Price Comparison -->
+          <div class="bg-light rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+              <div class="p-6">
+                  <h3 class="text-xl font-bold mb-2">CS:GO Item Price Comparison</h3>
+                  <p class="text-gray-600 mb-4">A Python script that compares CS:GO item prices between Loot.farm and Swap.gg, identifying profitable items based on price differences.</p>
+                  <div class="flex items-center gap-2 mb-4">
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">Python</span>
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">Web Scraping</span>
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">Data Analysis</span>
+                  </div>
+                  <a href="https://github.com/yourusername/csgo-price-comparison" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">View on GitHub</a>
+              </div>
           </div>
-        </div>
 
-        <!-- HashTable -->
-        <div class="bg-light rounded-lg shadow-lg overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">HashTable</h3>
-            <p class="text-gray-600 mb-4">A Java implementation of a hash table data structure, showcasing efficient data storage and retrieval mechanisms.</p>
-            <div class="flex items-center gap-2 mb-4">
-              <span class="px-2 py-1 bg-gray-100 rounded text-sm">Java</span>
-            </div>
-            <a href="https://github.com/shakka9789/HashTable" target="_blank" class="text-primary hover:underline">View on GitHub</a>
+          <!-- Project Card: 2024 US Election Counter -->
+          <div class="bg-light rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+              <div class="p-6">
+                  <h3 class="text-xl font-bold mb-2">2024 US Election Counter</h3>
+                  <p class="text-gray-600 mb-4">A live election counter that displays real-time results for the 2024 US Presidential Election, updated every 10 seconds.</p>
+                  <div class="flex items-center gap-2 mb-4">
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">JavaScript</span>
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">API Integration</span>
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">Real-Time Data</span>
+                  </div>
+                  <a href="https://github.com/yourusername/Election2024" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">View on GitHub</a>
+              </div>
           </div>
-        </div>
 
-        <!-- Huffman Coding -->
-        <div class="bg-light rounded-lg shadow-lg overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Huffman Coding</h3>
-            <p class="text-gray-600 mb-4">Implementation of the Huffman coding algorithm for data compression in Java, demonstrating advanced algorithm design and optimization.</p>
-            <div class="flex items-center gap-2 mb-4">
-              <span class="px-2 py-1 bg-gray-100 rounded text-sm">Java</span>
-            </div>
-            <a href="https://github.com/shakka9789/Huffman-Coding" target="_blank" class="text-primary hover:underline">View on GitHub</a>
+          <!-- Project Card: Weather Search -->
+          <div class="bg-light rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+              <div class="p-6">
+                  <h3 class="text-xl font-bold mb-2">Weather Search</h3>
+                  <p class="text-gray-600 mb-4">A weather search application that provides real-time weather information for any city using the OpenWeatherMap API.</p>
+                  <div class="flex items-center gap-2 mb-4">
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">JavaScript</span>
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">API Integration</span>
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">Tailwind CSS</span>
+                  </div>
+                  <a href="https://github.com/yourusername/WeatherApp" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">View on GitHub</a>
+              </div>
           </div>
-        </div>
 
-        <!-- QuadTree -->
-        <div class="bg-light rounded-lg shadow-lg overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">QuadTree</h3>
-            <p class="text-gray-600 mb-4">A C++ implementation of a QuadTree data structure, useful for spatial partitioning and efficient region-based queries.</p>
-            <div class="flex items-center gap-2 mb-4">
-              <span class="px-2 py-1 bg-gray-100 rounded text-sm">C++</span>
-            </div>
-            <a href="https://github.com/shakka9789/QuadTree" target="_blank" class="text-primary hover:underline">View on GitHub</a>
+          <!-- Project Card: Huffman Coding -->
+          <div class="bg-light rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+              <div class="p-6">
+                  <h3 class="text-xl font-bold mb-2">Huffman Coding</h3>
+                  <p class="text-gray-600 mb-4">Implementation of the Huffman coding algorithm for data compression in Java, demonstrating advanced algorithm design and optimization.</p>
+                  <div class="flex items-center gap-2 mb-4">
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">Java</span>
+                  </div>
+                  <a href="https://github.com/shakka9789/Huffman-Coding" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">View on GitHub</a>
+              </div>
           </div>
-        </div>
 
-        <!-- Dijkstra's Algorithm -->
-        <div class="bg-light rounded-lg shadow-lg overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Dijkstra's Algorithm</h3>
-            <p class="text-gray-600 mb-4">Java implementation of Dijkstra's shortest path algorithm, showcasing graph theory and pathfinding algorithms.</p>
-            <div class="flex items-center gap-2 mb-4">
-              <span class="px-2 py-1 bg-gray-100 rounded text-sm">Java</span>
-            </div>
-            <a href="https://github.com/shakka9789/Dijkstras-algorithm" target="_blank" class="text-primary hover:underline">View on GitHub</a>
+          <!-- Project Card: QuadTree -->
+          <div class="bg-light rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+              <div class="p-6">
+                  <h3 class="text-xl font-bold mb-2">QuadTree</h3>
+                  <p class="text-gray-600 mb-4">A C++ implementation of a QuadTree data structure, useful for spatial partitioning and efficient region-based queries.</p>
+                  <div class="flex items-center gap-2 mb-4">
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">C++</span>
+                  </div>
+                  <a href="https://github.com/shakka9789/QuadTree" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">View on GitHub</a>
+              </div>
           </div>
-        </div>
 
-        <!-- Scheduling -->
-        <div class="bg-light rounded-lg shadow-lg overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Scheduling</h3>
-            <p class="text-gray-600 mb-4">C++ implementation of various scheduling algorithms, demonstrating operating system concepts and process management.</p>
-            <div class="flex items-center gap-2 mb-4">
-              <span class="px-2 py-1 bg-gray-100 rounded text-sm">C++</span>
-            </div>
-            <a href="https://github.com/shakka9789/Scheduling" target="_blank" class="text-primary hover:underline">View on GitHub</a>
+          <!-- Project Card: Scheduling -->
+          <div class="bg-light rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+              <div class="p-6">
+                  <h3 class="text-xl font-bold mb-2">Scheduling</h3>
+                  <p class="text-gray-600 mb-4">C++ implementation of various scheduling algorithms, demonstrating operating system concepts and process management.</p>
+                  <div class="flex items-center gap-2 mb-4">
+                      <span class="px-2 py-1 bg-gray-100 rounded text-sm">C++</span>
+                  </div>
+                  <a href="https://github.com/shakka9789/Scheduling" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">View on GitHub</a>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
-  </section>
+  </div>
+</section>
 
   <!-- Certificates Section -->
   <section id="certificates" class="py-20 bg-secondary/10">
@@ -199,14 +243,15 @@
         <div class="p-6">
           <h3 class="text-xl font-bold mb-2">Bachelor's Degree</h3>
           <p class="text-gray-600 mb-4">Bachelor of Science in Computer Science, showcasing excellence in academic and technical knowledge.</p>
-          <a href="" target="_blank" rel="noopener noreferrer">
+          <a href="Images/bachelor.jpg" target="_blank" rel="noopener noreferrer">
             <button class="bg-primary text-light py-2 px-4 mb-4 rounded hover:bg-secondary transition-colors ">
               View Bachelor's Certificate
             </button>
           </a> 
           <ul class="list-disc list-inside text-sm text-gray-500">
-            <li>Issued: July, 2023</li>
+            <li>Issued: 2023</li>
             <li>Institution: Queens College City University Of New York</li>
+            <li>Issuer: Frank H, Wu, President of Queens College</li>
           </ul>
         </div>
       </div>
@@ -222,8 +267,9 @@
               </button>
             </a>            
             <ul class="list-disc list-inside text-sm text-gray-500">
-              <li>Issued: November, 2024</li>
-              <li>Issuer: Frank H, Wu, President of Queens College</li>
+              <li>Issued: 2024</li>
+              <li>Institution: Sololearn</li>
+              <li>Issuer: Yeva Hyusyan, Chief Executive Officer</li>
             </ul>
           </div>
         </div>
@@ -239,7 +285,8 @@
               </button>
             </a> 
             <ul class="list-disc list-inside text-sm text-gray-500">
-              <li>Issued: June, 2020</li>
+              <li>Issued: 2020</li>
+              <li>Institution: Sololearn</li>
               <li>Issuer: Yeva Hyusyan, Chief Executive Officer</li>
             </ul>
           </div>
@@ -249,11 +296,11 @@
   </section>
 
   <!-- Experience Section -->
-  <section id="experience" class="py-20 bg-secondary/10">
+  <section id="experience" class="py-16 md:py-20 animate-on-scroll">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-8">Experience</h2>
       <div class="space-y-8">
-        <div class="bg-light p-6 rounded-lg shadow">
+        <div class="bg-light p-6 rounded-lg shadow transform hover:scale-105 transition-transform duration-300">
           <h3 class="text-xl font-bold mb-2">Print & IT Operations Specialist</h3>
           <p class="text-gray-600 mb-2">Staples | May 2023 - Present</p>
           <ul class="list-disc list-inside text-gray-700">
@@ -263,25 +310,17 @@
             <li>Identify and implement strategies for revenue generation.</li>
           </ul>
         </div>
-        <div class="bg-light p-6 rounded-lg shadow">
-          <h3 class="text-xl font-bold mb-2">Member</h3>
-          <p class="text-gray-600 mb-2">Girls Who Can Code Queens College Club | October 2021 - 2023</p>
-          <ul class="list-disc list-inside text-gray-700">
-            <li>Led interactive discussions on computer science topics with students from a variety of academic backgrounds and colleges.</li>
-            <li>Contributed to workshops and events aimed at improving coding skills and expanding industry knowledge.</li>
-          </ul>
-        </div>
+        
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-primary text-light">
+  <section id="contact" class="py-16 md:py-20 bg-primary text-light animate-on-scroll">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-8">Contact Me</h2>
       <div class="max-w-md mx-auto text-center">
         <p class="mb-4">Feel free to reach out for collaboration or inquiries.</p>
-        <p class="mb-2"><i class="fas fa-envelope mr-2"></i> Karimov9789@gmail.com</p>
         <p class="mb-4"><i class="fas fa-map-marker-alt mr-2"></i> Wantagh, NY</p>
         <a href="https://linkedin.com/in/shaxzod-karimov-0b1862180/" target="_blank" rel="noopener noreferrer" class="hover:underline">
           <i class="fab fa-linkedin mr-2"></i>LinkedIn Profile
@@ -293,13 +332,58 @@
   <!-- Footer -->
   <footer class="bg-dark text-light text-center py-6">
     <div class="container mx-auto px-4">
-      <p>&copy; 2024 Shaxzod Karimov. All rights reserved.</p>
+      <p>&copy; 2025 Shaxzod Karimov. All rights reserved.</p>
       <div class="mt-4">
         <a href="https://linkedin.com/in/shaxzod-karimov-0b1862180/" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline mx-2">LinkedIn</a>
         <a href="https://github.com/shakka9789" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline mx-2">GitHub</a>
       </div>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const navbar = document.getElementById('navbar');
+      
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        menuToggle.innerHTML = mobileMenu.classList.contains('hidden') 
+          ? '<i class="fas fa-bars text-2xl"></i>' 
+          : '<i class="fas fa-times text-2xl"></i>';
+      });
+
+      // Close mobile menu when a link is clicked
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuToggle.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+        });
+      });
+
+      // Navbar scroll effect
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('bg-dark/90', 'backdrop-blur-sm');
+        } else {
+          navbar.classList.remove('bg-dark/90', 'backdrop-blur-sm');
+        }
+      });
+
+      // Animate on scroll
+      const animateOnScrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      });
+
+      const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+      animateOnScrollElements.forEach((el) => animateOnScrollObserver.observe(el));
+    });
+  </script>
 
 </body>
 </html>
